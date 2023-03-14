@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Best Cars - About Us</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css'%}">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -14,60 +16,60 @@
     <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
 
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Best Cars</a>
+<body class="d-flex flex-column justify-content-between">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand h2 mb-0" href="./">Best Cars</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-            <li class="nav-item ml-5">
-                <a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item ml-5 active">
-                <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item ml-lg-5">
-                <a class="nav-link" href="contact.html">Contact</a>
-            </li>
-            <li class="nav-item dropdown ml-5">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Options
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
+            <ul class="navbar-nav w-100 justify-content-around">
+                <li class="nav-item ml-lg-5">
+                    <a class="nav-link text-white-50" href="./">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item ml-lg-5">
+                    <a class="nav-link text-light" href="about.html">About</a>
+                </li>
+                <li class="nav-item ml-lg-5">
+                    <a class="nav-link text-white-50" href="contact.html">Contact</a>
+                </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
         </div>
     </nav>
     <div class="mx-5 mt-5">
         <h1 class="text-center">
             Welcome to Best Cars dealership, home to the best cars in North America. We sell domestic and imported cars at reasonable prices.
         </h1>
-        <p class="mt-5">
+        <p class="mt-5 text-center">
             We are a key Car Dealership with branches all around
             United States.
             For more than 30 years we have been providing our users
             with the best <b>quality</b> cars in the market, and we will
             continue doing so.
         </p>
-        <p>
+        <p class="text-center">
             Making your life easier when choosing your new car is not
             just our motto, is our <b>lifestyle</b>.
-            Head to our <a href="./">Contact page</a> to meet with one of our experts
+            Head to our <a href="contact.html">Contact page</a> to meet with one of our experts
             to help you make the best decision or to try your next new car
             before buying it.
         </p>
     </div>
+
+    <footer class="d-flex justify-content-between">
+        <div class="d-flex">
+            <h6 class="mb-0 text-center text-light mr-3 text-light">Follow Us </h6>
+            <a href="#" class="p-0">
+                <img class="mr-3" width="20px" height="20px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/132px-Instagram_logo_2016.svg.png?20210403190622">
+            </a>
+            <a href="#" class="p-0">
+                <img width="24px" height="20px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Twitter-logo.svg/512px-Twitter-logo.svg.png?20220821125553">
+            </a>
+        </div>
+        <h6 class="mb-0 text-light">
+            <a href="contact.html">Contact Page</a>
+        </h6>
+    </footer>
 </body>
 </html>
