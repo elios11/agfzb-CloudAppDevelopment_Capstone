@@ -23,20 +23,34 @@
         
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav w-100 justify-content-around">
-                <li class="nav-item ml-lg-5">
-                    <a class="nav-link text-white-50" href="./">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link text-white-50" href="{% url 'djangoapp:index' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item ml-lg-5">
-                    <a class="nav-link text-white-50" href="about.html">About</a>
+                <li class="nav-item">
+                    <a class="nav-link text-white-50" href="{% url 'djangoapp:about' %}">About</a>
                 </li>
-                <li class="nav-item ml-lg-5">
-                    <a class="nav-link text-light" href="#">Contact</a>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'djangoapp:contact' %}">Contact</a>
                 </li>
+                {% if user.is_authenticated %}
+                <li>
+                    <a class="btn btn-link text-light" href="#">{{ user.first_name }}({{ user.username }})</a>
+                    <a class="btn btn-link text-dark" href="#">Logout</a>
+                </li>
+                {% else %}
+                <form method="post" action="{% url 'djangoapp:login' %}" class="d-flex text-light align-items-center">
+                    {% csrf_token %}
+                    <input class="mr-3" type="text" name="username">
+                    <input class="mr-3" type="password" name="pwd">
+                    <button type="submit" class="login-btn mr-2">Log in</button>
+                    <a class="sign-up-btn" href="./registration.html">Sign up</a>
+                </form>
+                {% endif %}
             </ul>
         </div>
     </nav>
 
-    <div class="m-5 h-100 d-flex flex-column text-center">
+    <div class="mx-5 h-100 d-flex flex-column text-center">
         <h1>
             Couldn't find what you were looking for?
         </h1>
@@ -46,7 +60,7 @@
             <b><a href="mailto: best@cars.com">best@cars.com</a></b>
         </p>
         <p class="mt-4 h5">
-            You could also call us from Monday to Saturday 9 AM - 7 PM
+            You can also call us from Monday to Saturday 9 AM - 7 PM
             at <b><a href="tel:(555) 555-1234">(555) 555-1234</a></b>.
         </p>
     </div>

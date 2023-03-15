@@ -37,3 +37,46 @@ footer a:hover {
     color: white;
     opacity: 0.8;
 }
+
+input[name="username"], input[name="pwd"] {
+    border: 0.8px solid rgb(207, 207, 255);
+    padding: 8px;
+    width: 10rem;
+    height: 2rem;
+    border-radius: 4px;
+}
+
+input:focus-visible {
+    box-shadow: 0px 0px 4px lavender;
+    outline: none;
+}
+
+.login-btn, .sign-up-btn {
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+}
+
+form button:focus {
+    outline: none;
+}
+
+.login-btn {
+    background-color: #3c37ff;
+}
+
+.login-btn:hover {
+    background-color: #4f49f7;
+}
+
+.sign-up-btn {
+    background-color: green;
+}
+
+.sign-up-btn:hover {
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    background-color: rgb(38, 136, 38);
+}

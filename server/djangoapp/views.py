@@ -13,10 +13,6 @@ import json
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
-
-# Create your views here.
-
-
 # Create an `about` view to render a static about page
 def about(request):
     return render(request, "djangoapp/about.html")
@@ -26,9 +22,19 @@ def contact(request):
     return render(request, "djangoapp/contact.html")
 
 # Create a `login_request` view to handle sign in request
-# def login_request(request):
-# ...
-
+def login_request(request):
+    context = {}
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["pwd"]
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect(request.META.get("HTTP_REFERER", "/"))
+        context["login_error"] = "Invalid username or password. Try again or register if you don't already have an account."
+        return render(request, "djangoapp/login.html", context)
+    else:
+        return render(request, "djangoapp/login.html", context)
 # Create a `logout_request` view to handle sign out request
 # def logout_request(request):
 # ...
