@@ -34,8 +34,11 @@
                 </li>
                 {% if user.is_authenticated %}
                 <li>
-                    <a class="btn btn-link text-light" href="#">{{ user.first_name }}({{ user.username }})</a>
-                    <a class="btn btn-link text-dark" href="#">Logout</a>
+                    <form method="post" action="{% url 'djangoapp:logout' %}">
+                        {% csrf_token %}
+                        <a class="btn btn-link text-light" href="#">{{ user.first_name }} ({{ user.username }})</a>
+                        <button type="submit" class="btn btn-link text-dark" href="#">Logout</button>
+                    </form>
                 </li>
                 {% else %}
                 <form method="post" action="{% url 'djangoapp:login' %}" class="d-flex text-light align-items-center">

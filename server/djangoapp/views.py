@@ -33,15 +33,39 @@ def login_request(request):
             return redirect(request.META.get("HTTP_REFERER", "/"))
         context["login_error"] = "Invalid username or password. Try again or register if you don't already have an account."
         return render(request, "djangoapp/login.html", context)
-    else:
-        return render(request, "djangoapp/login.html", context)
+    return render(request, "djangoapp/login.html", context)
+
 # Create a `logout_request` view to handle sign out request
-# def logout_request(request):
-# ...
+def logout_request(request):
+    if request.method == "POST":
+        logout(request)
+    return redirect("djangoapp:index")
 
 # Create a `registration_request` view to handle sign up request
-# def registration_request(request):
-# ...
+def registration_request(request):
+    context = {}
+    if request.method == "POST":
+        print(request.POST)
+        username = request.POST["username"]
+        first_name = request.POST["first_name"]
+        last_name = request.POST["last_name"]
+        password = request.POST["password"]
+        try:
+            User.objects.get(username=username)
+            username_in_use = True
+            context["message"] = "The username is already in use"
+        except:
+            logger.debug(f"{username} is not in use")
+        if not username_in_use:
+            user = User.objects.create(
+                username=username,
+                first_name=first_name,
+                last_name=last_name,
+                password=password
+            )
+            login(request, user)
+            redirect("djangoapp:index")
+    return render(request, "djangoapp/registration.html", context)
 
 # Update the `get_dealerships` view to render the index page with a list of dealerships
 def get_dealerships(request):

@@ -38,7 +38,7 @@ footer a:hover {
     opacity: 0.8;
 }
 
-input[name="username"], input[name="pwd"] {
+form input[type="text"], form input[type="password"] {
     border: 0.8px solid rgb(207, 207, 255);
     padding: 8px;
     width: 10rem;
