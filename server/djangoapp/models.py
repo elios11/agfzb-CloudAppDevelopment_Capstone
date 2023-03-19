@@ -6,7 +6,7 @@ from django.utils.timezone import now
 # Create a CarMake model class
 class CarMake(models.Model):
     name = models.CharField(max_length=20, null=False)
-    description = models.CharField(max_length=20, null=False)
+    description = models.CharField(max_length=100, null=False)
 
     def __str__(self):
         return "Name: {}, Description: {}".format(self.name, self.description)

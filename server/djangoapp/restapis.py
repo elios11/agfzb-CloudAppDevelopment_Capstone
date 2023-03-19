@@ -33,8 +33,11 @@ def post_request(url, json_payload, **kwargs):
             params=kwargs,
             json=json_payload
         )
+        response.raise_for_status()
+        return response
     except:
         print("Network exception occurred for post request")
+        raise Exception("Failed to post request to " + url)
 
 
 # Create a get_dealers_from_cf method to get dealers from a cloud function
@@ -105,7 +108,7 @@ def analyze_review_sentiments(text):
 
     natural_language_understanding.set_service_url(url) 
 
-    response = natural_language_understanding.analyze( text=text ,features=Features(sentiment=SentimentOptions(targets=[text]))).get_result() 
+    response = natural_language_understanding.analyze( text=text ,features=Features(sentiment=SentimentOptions(targets=[text])), language="en").get_result() 
 
     label=json.dumps(response, indent=2) 
 

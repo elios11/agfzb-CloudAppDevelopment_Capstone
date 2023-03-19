@@ -51,7 +51,7 @@ input:focus-visible {
     outline: none;
 }
 
-.login-btn, .sign-up-btn {
+.login-btn, .sign-up-btn, .add-review-btn {
     color: white;
     padding: 8px;
     border: none;
@@ -70,13 +70,17 @@ form button:focus {
     background-color: #4f49f7;
 }
 
-.sign-up-btn {
+.sign-up-btn, .add-review-btn {
     background-color: green;
 }
 
-.sign-up-btn:hover {
+.sign-up-btn:hover, .add-review-btn:hover {
     cursor: pointer;
     color: white;
     text-decoration: none;
     background-color: rgb(38, 136, 38);
+}
+
+textarea {
+    resize: none;
 }

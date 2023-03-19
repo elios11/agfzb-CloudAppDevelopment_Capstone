@@ -5,14 +5,86 @@
     <title>Dealership Review</title>
     {% load static %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
-
-    <body>
-
-    <!--Add a nav bar here -->
+<body class="d-flex flex-column justify-content-between">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand h2 mb-0" href="./">Best Cars</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav w-100 justify-content-around">
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="{% url 'djangoapp:index' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white-50" href="{% url 'djangoapp:about' %}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white-50" href="{% url 'djangoapp:contact' %}">Contact</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li>
+                    <a class="btn text-light border" href="{% url 'djangoapp:add_review' dealer_id %}">Add Review</a>
+                </li>
+                <li>
+                    <form method="post" action="{% url 'djangoapp:logout' %}">
+                        {% csrf_token %}
+                        <a class="btn btn-link text-light" href="#">{{ user.first_name }} ({{ user.username }})</a>
+                        <button type="submit" class="btn btn-link text-dark" href="#">Logout</button>
+                    </form>
+                </li>
+                {% else %}
+                <form method="post" action="{% url 'djangoapp:login' %}" class="d-flex text-light align-items-center">
+                    {% csrf_token %}
+                    <input class="mr-3" type="text" name="username">
+                    <input class="mr-3" type="password" name="pwd">
+                    <button type="submit" class="login-btn mr-2">Log in</button>
+                    <a class="sign-up-btn" href="./registration.html">Sign up</a>
+                </form>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
 
     <!-- Add reviews as cards -->
+    <div class="card-columns m-4">
+    {% for review in reviews %}
+        <div class="card">
+            <img class="card-img-left pt-2 pl-2" width="50" src="{{MEDIA_URL}}/emoji/{{review.sentiment}}.png">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{review.car_make}} - {{review.car_model}}
+                </h5>
+                <p class="font-weight-bold">
+                    {{review.purchase_date}}
+                </p>
+                <p class="card-text">
+                    {{review.review}}
+                </p>
+            </div>
+            <div class="card-footer">
+                {{review.name}}
+            </div>
+        </div>
+    {% endfor %}
+    </div>
 
-    </body>
-
+    <footer class="d-flex justify-content-between">
+        <div class="d-flex">
+            <h6 class="mb-0 text-center text-light mr-3 text-light">Follow Us </h6>
+            <a href="#" class="p-0">
+                <img class="mr-3" width="20px" height="20px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/132px-Instagram_logo_2016.svg.png?20210403190622">
+            </a>
+            <a href="#" class="p-0">
+                <img width="24px" height="20px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Twitter-logo.svg/512px-Twitter-logo.svg.png?20220821125553">
+            </a>
+        </div>
+        <h6 class="mb-0 text-light">
+            <a href="{% url 'djangoapp:contact' %}">Contact Page</a>
+        </h6>
+    </footer>
+</body>
 </html>
