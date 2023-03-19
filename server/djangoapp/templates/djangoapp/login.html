@@ -27,7 +27,7 @@
                 </li>
                 {% if user.is_authenticated %}
                 <li>
-                    <a class="btn btn-link text-light" href="#">{{ user.first_name }} ({{ user.username }})</a>
+                    <a class="btn btn-link text-light pl-0" href="#">{{ user.first_name }} ({{ user.username }})</a>
                     <a class="btn btn-link text-dark" href="#">Logout</a>
                 </li>
                 {% else %}
@@ -63,7 +63,7 @@
             </a>
         </div>
         <h6 class="mb-0 text-light">
-            <a href="contact.html">Contact Page</a>
+            <a href="{% url 'djangoapp:contact' %}">Contact Page</a>
         </h6>
     </footer>
 </body>

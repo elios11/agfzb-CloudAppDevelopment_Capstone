@@ -9,7 +9,7 @@ from django.contrib import messages
 from datetime import datetime
 import logging
 import json
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
@@ -22,6 +22,10 @@ def contact(request):
     return render(request, "djangoapp/contact.html")
 
 # Create a `login_request` view to handle sign in request
+def user_not_authenticated(user):
+    return not user.is_authenticated
+
+@user_passes_test(user_not_authenticated, login_url="/djangoapp/")
 def login_request(request):
     context = {}
     if request.method == "POST":
